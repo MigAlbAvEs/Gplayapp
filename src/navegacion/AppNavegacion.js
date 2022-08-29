@@ -3,6 +3,7 @@ import { Icon } from "react-native-elements";
 import {vista} from "../utils";
 import { CuentaStack } from "./CuentaStack";
 import { MapaStack } from "./MapaStack";
+import { ProductosStack } from "./ProductosStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +19,9 @@ export function AppNavegacion(){
 
         })}>
             <Tab.Screen name={vista.Mapa.tab} component={MapaStack} options={{title: "Mapa"}} />
+            <Tab.Screen name={vista.Productos.tab} component={ProductosStack} options={{title: "Productos"}} />
             <Tab.Screen name={vista.Cuenta.tab} component={CuentaStack} options={{title: "Cuenta"}} />
+            
         </Tab.Navigator>
     );
 }
@@ -28,8 +31,13 @@ function screenOptions (route, color, size){
     if(route.name === vista.Mapa.tab)
     iconName = "compass-outline";
 
+    if(route.name === vista.Productos.tab)
+    iconName = "storefront-outline";
+
     if(route.name === vista.Cuenta.tab)
-    iconName = "home-outline";
+    iconName = "account-outline";
+
+    
 
     return(
         <Icon type="material-community" name={iconName} color={color} size={size} />

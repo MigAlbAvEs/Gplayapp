@@ -4,9 +4,24 @@ import { StyleSheet, Text, View } from 'react-native';
 import MapView, { Marker, Polyline } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import {GOOGLE_MAPS_KEY} from '@env';
+import firestore from '@react-native-firebase/firestore ';
 const carImage = require('../../assets/img/car.png')
 
 export function MapaVista() {
+
+  async function loadData() {
+  try{
+    const tienda = await firestore().collection('tiendas').get()
+    console.log(tienda)
+   }catch(e) {
+    console.log(e)
+    }
+  }
+
+  React.useEffect(() => {
+    loadData()
+  }, [])
+
 
   const [origin, setOrigin] = React.useState({
     latitude: 20.6539495,
